@@ -10,7 +10,6 @@ Heroku App link: https://assignment-pbp2.herokuapp.com/katalog/
 
 ## 1. Bagan Proses *Application* Django
 <img src=/images/tugas2pbp.png width="720" height="720">
-![bagan django](/images/tugas2pbp.png)
 
 ## 2. *Virtual Environment*
 *Virtual environment* merupakan sebuah *environment* yang dibuat dalam projek kita untuk memisahkan dengan projek yang lainnya pada device yang sama. *Virtual environment* ini dibuat bertujuan agar tidak terjadi perbedaan *package* antar projek yang dibuat. Dikarenakan tidak semua projek yang kita buat memerlukan *package* yang sama atau versi yang sama. Sehingga jika terjadi perbedaan tersebut, kita masih tetap bisa menjalankan seperti biasa.
