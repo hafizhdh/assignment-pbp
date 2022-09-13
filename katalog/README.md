@@ -24,7 +24,7 @@ views.py merupakan kode yang digunakan untuk menerima *request* dari *client* da
 
 ### b. Routing
 
-Ketika user meminta *request* pada browser, Django akan mencocokan pattern antara URL dengan path yang sudah ditulis pada `urls.py`. Apabila path yang diminta sesuai dengan path yang ada, Django akan memamnggil fungsi yang ada pada `views.py`.
+Ketika user meminta *request* pada browser, Django akan mencocokan pattern antara URL dengan path yang sudah ditulis pada `urls.py` pada Django app. Kemudian urls yang diterima, akan disambungkan pada `urls.py` pada katalog app. `urls.py` pada katalog app, akan memamnggil fungsi yang ada pada `views.py`.
 
 ### c. Pemetaan data
 
