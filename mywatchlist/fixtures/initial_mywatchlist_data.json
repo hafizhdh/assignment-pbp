@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": "Sudah ditonton",
+            "title": "Interstellar",
+            "rating": 5,
+            "release_date": "2014-11-06",
+            "review": "Perjalanan ruang angkasa dan teori-teori ruang dan waktu yang mind blowing!"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 2,
+        "fields": {
+            "watched": "Sudah ditonton",
+            "title": "Your Name",
+            "rating": 4,
+            "release_date": "2016-12-07",
+            "review": "Sebuah anime yang menceritakan tentang kisah antar 2 orang yang berbeda dimensi waktu"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 3,
+        "fields": {
+            "watched": "Sudah ditonton",
+            "title": "I Saw the Devil",
+            "rating": 3,
+            "release_date": "2010-08-12",
+            "review": "Menceritakan tentang seorang yang ingin membalaskan dendamnya kepada seorang yang membunuh tunangannya"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 4,
+        "fields": {
+            "watched": "Sudah ditonton",
+            "title": "Parasite",
+            "rating": 4,
+            "release_date": "2019-06-21",
+            "review": "Kisah sebuah keluarga yang hidup sebagai \"parasit\" di rumah orang lain"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 5,
+        "fields": {
+            "watched": "Sudah ditonton",
+            "title": "Fresh",
+            "rating": 4,
+            "release_date": "2022-01-20",
+            "review": "Seorang wanita yang berusaha kabur dari rumah seorang kanibal yang ingin menjual dagingnya"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 6,
+        "fields": {
+            "watched": "Sudah ditonton",
+            "title": "Memoir of a Murderer",
+            "rating": 4,
+            "release_date": "2017-09-06",
+            "review": "Serial killer dimana pembunuh yang terkena Alzheimer berusah melindungi anaknya dari pacarnya yang psikopat"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 7,
+        "fields": {
+            "watched": "Belum ditonton",
+            "title": "Miracle in Cell No. 7",
+            "rating": 4,
+            "release_date": "2022-09-08",
+            "review": "Menceritakan kisah seorang ayah difabel yang ditangkap paksa atas kejahatan yang tak ia lakukan"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 8,
+        "fields": {
+            "watched": "Sudah ditonton",
+            "title": "Dr. Strange in the Multiverse of Madness",
+            "rating": 4,
+            "release_date": "2022-05-05",
+            "review": "Perjalanan Doctor Strange yang melintasi multiverse"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 9,
+        "fields": {
+            "watched": "Sudah ditonton",
+            "title": "Weathering with You",
+            "rating": 4,
+            "release_date": "2019-08-21",
+            "review": "Kisah anime tentang gadis pengendali cuaca"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 10,
+        "fields": {
+            "watched": "Belum ditonton",
+            "title": "Mencuri Raden Saleh",
+            "rating": 4,
+            "release_date": "2022-08-25",
+            "review": "Pencurian lukisan karya Raden Salah yang berjudul Penangkapan Diponegoro oleh sekelompok anak muda"
+        }
+    }
+]
