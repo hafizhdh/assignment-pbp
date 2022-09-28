@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Tugas 4 Assignment PBP</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<h1>Tugas 4 Assignment PBP/PBD</h1>
+<h4>Name: {{nama}}</h4>
+<h4>Student ID: {{npm}}</h4>
+
+<h3>Logged user: {{logged}}</h3>
+
+<h2>To Do List</h2>
+<button><a href="{% url 'todolist:create' %}">Tambah Task Baru</a></button>
+<br></br>
+<table>
+    <tr>
+      <th>Judul</th>
+      <th>Deskripsi</th>
+      <th>Tanggal Pembuatan</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+    </tr>
+    {% for todo in todolist %}
+    <tr>
+        <th>{{todo.title}}</th>
+        <th>{{todo.description}}</th>
+        <th>{{todo.date}}</th>
+        {% if todo.is_finished %}
+            <th>Selesai</th>
+            <th> <button><a href="{% url 'todolist:set' todo.pk %}">Mark Undone</a></button> </th>
+        {% else %}
+            <th>Belum Selesai</th>
+            <th> <button><a href="{% url 'todolist:set' todo.pk %}">Mark Done</a></button> </th>
+        {% endif %}
+        <th> <button><a href="{% url 'todolist:delete' todo.pk %}">Hapus Task</a></button> </th>
+    </tr>
+    {% endfor %}
+</table>
+
+<div>
+    <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+</div>
+
+
+{% endblock content %}

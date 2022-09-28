@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Create Task</title>
+{% endblock meta %}
+
+{% block content %}
+
+
+<h2>Tambah Task</h2>
+<div>
+    <form action="{% url 'todolist:create' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <br><br>
+        <input type="submit" value="Submit" />
+    </form>
+    <br>
+
+</div>
+
+{% endblock content %}
