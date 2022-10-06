@@ -6,17 +6,19 @@
 
 {% block content %}
 
+<body style="background-color:beige ;">
+    <h2 style="text-align:center ;">Tambah Task</h2>
+    <div class="d-flex justify-content-center">
+        <form action="{% url 'todolist:create' %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <br><br>
+            <input class="btn btn-primary" type="submit" value="Submit" />
+        </form>
+        <br>
+    
+    </div>
 
-<h2>Tambah Task</h2>
-<div>
-    <form action="{% url 'todolist:create' %}" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <br><br>
-        <input type="submit" value="Submit" />
-    </form>
-    <br>
-
-</div>
+</body>
 
 {% endblock content %}

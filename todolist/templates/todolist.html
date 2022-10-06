@@ -6,44 +6,44 @@
 
 {% block content %}  
 
-<h1>Tugas 4 Assignment PBP/PBD</h1>
-<h4>Name: {{nama}}</h4>
-<h4>Student ID: {{npm}}</h4>
 
-<h3>Logged user: {{logged}}</h3>
+<body style="background-color:beige;">
 
-<h2>To Do List</h2>
-<button><a href="{% url 'todolist:create' %}">Tambah Task Baru</a></button>
-<br></br>
-<table>
-    <tr>
-      <th>Judul</th>
-      <th>Deskripsi</th>
-      <th>Tanggal Pembuatan</th>
-      <th>Status</th>
-      <th></th>
-      <th></th>
-    </tr>
-    {% for todo in todolist %}
-    <tr>
-        <th>{{todo.title}}</th>
-        <th>{{todo.description}}</th>
-        <th>{{todo.date}}</th>
-        {% if todo.is_finished %}
-            <th>Selesai</th>
-            <th> <button><a href="{% url 'todolist:set' todo.pk %}">Mark Undone</a></button> </th>
-        {% else %}
-            <th>Belum Selesai</th>
-            <th> <button><a href="{% url 'todolist:set' todo.pk %}">Mark Done</a></button> </th>
-        {% endif %}
-        <th> <button><a href="{% url 'todolist:delete' todo.pk %}">Hapus Task</a></button> </th>
-    </tr>
-    {% endfor %}
-</table>
+    <div class="container">
+        <h2 style="text-align:center ;">To Do List</h2>
+        <h3 style="text-align:center ;">Welcome, {{logged}}!</h3>
+    
+        <a href="{% url 'todolist:create' %}" class="btn btn-warning">Tambah Task Baru</a>
+        <br></br>
+        
+        {% for todo in todolist %}
+        <div class="card text-bg-light" >
+            {% if todo.is_finished %} 
+            <h5 class="card-header"><del>{{todo.title}}</del></h5>
+            <div class="card-body">
+            <p class="card-text text-black-50"><del>{{todo.date}}</del></p>
+            <p class="card-text"><del>{{todo.description}}</del></p>
+            <a href="{% url 'todolist:set' todo.pk %}" class="btn btn-success">Undone</a>
+        
+            {% else %}
+            <h5 class="card-header">{{todo.title}}</h5>
+            <div class="card-body">
+            <p class="card-text text-black-50">{{todo.date}}</p>
+            <p class="card-text">{{todo.description}}</p>
+            <a href="{% url 'todolist:set' todo.pk %}" class="btn btn-success">Done</a>
+            {% endif %}
+            <a href="{% url 'todolist:delete' todo.pk %}" class="btn btn-danger">Hapus</a>
+            <br>
+            </div>
+          </div>
+        <div>
+        {% endfor %}
+        <br>
+            <a href="{% url 'todolist:logout' %}" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
 
-<div>
-    <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
-</div>
+</body>    
 
 
 {% endblock content %}

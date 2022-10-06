@@ -37,3 +37,103 @@ Pertama, user akan mengisi form untuk menambahkan task pada form yang telah kita
 
         username = pengguna2
         password = 386bNuytV2Z9itY
+
+# Tugas 5: Web Design Using HTML, CSS, and CSS Framework
+
+## 1. Perbedaan dari Inline, Internal, dan External CSS
+ a. Inline Style merupakan konfigurasi CSS yang diterapkan langsung pada setiap tag HTML seperti `<p style=""></p>`. Style yang didefinisikan hanya berlaku pada tag tersebut saja.
+
+```
+Kelebihan:
+
+Digunakan ketika kita ingin melakukan styling hanya pada satu tag saja tanpa harus mengubah konfigurasi yang lain
+
+Kekurangan:
+
+Tidak terlalu efisien untuk styling pada satu atau lebih page HTML.
+```
+ b. Internal Style merupakan konfigurasi CSS yang diterapkan pada satu page html yang ditulis pada `<head>` tag page tersebut. 
+```
+Kelebihan:
+
+1. Dapat digunakan pada satu page HTML sehingga lebih efisien dibanding inline.
+2. Dapat menggunakan `class` dan `ID selector` sehingga mempermudah penggunaan style pada banyak tag dalam satu page.
+
+Kekurangan:
+
+Dapat memperbesar ukuran web page dan meningkatkan loading time web tersebut
+```
+ c. External Style merupakan konfigurasi CSS yang diletakkan pada file `.css` yang berbeda dan bisa berlaku untuk lebih dari 1 page.
+
+```
+Kelebihan:
+
+Hanya perlu menerapkan satu file `.css` untuk banyak page.
+
+Kekurangan:
+
+Bisa terjadi kesalahan rendering apabila file `.css` kita belum ter-load pada page kita.
+```
+
+## 2. Tag HTML5
+
+`<nav>`: Untuk membuat navigation link pada page.
+
+`<footer>`: Untuk membuat page footer.
+
+`<header>`: Untuk membuat page header.
+
+`<svg>`: Untuk menampilkan sebuah SVG (Scalable Vector Graphics) pada page.
+
+`<time>`: Untuk menampilkan waktu atau tanggal.
+
+`<dialog>`: Menampilkan window atau dialog box.
+
+## 3. Tipe-tipe CSS selector
+
+1. Element Selector
+Selector ini diterapkan berdasarkan tag yang didefinisikan. Contoh:
+
+```
+p {
+    color: red;
+    ...
+}
+```
+2. ID Selector
+Selector ini diterapkan berdasarkan attribut ID dari HTML untuk memilih elemen tertentu. Contoh:
+```
+#id1{
+    color: blue;
+    ...
+}
+```
+3. Class Selector
+Selector ini akan memilih HTML elemen berdasarkan class attribut tertentu. Contoh:
+```
+.center {
+  color: red;
+  ...
+}
+```
+4. Universal Selector
+Selector ini akan memilih semua elemen HTML pada sebuah page. Contoh:
+```
+* {
+  color: blue;
+  ...
+}
+```
+
+## 4. Implementasi Tugas 5
+1. Untuk tugas 5 kali ini saya menggunakan framework CSS yaitu Bootstrap CSS. Agar dapat digunakan, kita perlu menambahkan barisan kode dibawah ke dalam `base.html` kita agar dapat digunakan ke semua HTML kita.
+```HTML
+<!-- base.html -->
+...
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+...
+```
+2. Melakukan kustomisasi pada halaman create task, login, register, dan todolist menggunakan Bootstrap. Untuk kustomisasi pada todolist, menggunakan class card yang telah disediakan oleh bootstrap.
+
+3. Bootstrap sendiri telah membuat page kita menjadi responsive tanpa kita harus melakukan konfigurasi sendiri.
