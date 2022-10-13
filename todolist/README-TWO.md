@@ -6,6 +6,17 @@ NPM : 2106750723
 
 Kelas : D
 
+Herokuapp link: https://assignment-pbp2.herokuapp.com/todolist
+
+User heroku:
+```
+username = pengguna1
+password = YAFPptnYq6E63jR
+
+username = pengguna2
+password = 386bNuytV2Z9itY
+```
+
 1. Asynchronous vs Synchronous Programming
     
     a. Asynchronous Programming adalah *non-blocking architecture* yang artinya tidak melakukan *blocking* pada proses selanjutnya yang akan dijalankan ketika sedang melakukan proses yang saat ini dijalankan. Dengan asynchronous programming, kita dapat melakukan beberapa tasks secara bersamaan tanpa harus menunggu task yang lain selesai dijalankan. Pada web development, hal ini berarti kita masih bisa berinteraksi dengan web page tanpa menunggu web tersebut melakukan load data.
