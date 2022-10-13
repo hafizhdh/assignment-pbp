@@ -6,44 +6,180 @@
 
 {% block content %}  
 
-
 <body style="background-color:beige;">
 
     <div class="container">
         <h2 style="text-align:center ;">To Do List</h2>
         <h3 style="text-align:center ;">Welcome, {{logged}}!</h3>
     
-        <a href="{% url 'todolist:create' %}" class="btn btn-warning">Tambah Task Baru</a>
+        <!-- <a href="{% url 'todolist:create' %}" class="btn btn-warning">Tambah Task Baru</a> -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+            Create Task
+        </button>
         <br></br>
-        
-        {% for todo in todolist %}
+        <div id="todolist-card"></div>
+        <!-- {% for todo in todolist %}
         <div class="card text-bg-light" >
             {% if todo.is_finished %} 
             <h5 class="card-header"><del>{{todo.title}}</del></h5>
             <div class="card-body">
-            <p class="card-text text-black-50"><del>{{todo.date}}</del></p>
-            <p class="card-text"><del>{{todo.description}}</del></p>
-            <a href="{% url 'todolist:set' todo.pk %}" class="btn btn-success">Undone</a>
-        
+                <p class="card-text text-black-50"><del>{{todo.date}}</del></p>
+                <p class="card-text"><del>{{todo.description}}</del></p>
+                <a href="{% url 'todolist:set' todo.pk %}" class="btn btn-success">Undone</a>
+                <a href="{% url 'todolist:delete' todo.pk %}" class="btn btn-danger">Hapus</a>
+            </div>
             {% else %}
             <h5 class="card-header">{{todo.title}}</h5>
             <div class="card-body">
-            <p class="card-text text-black-50">{{todo.date}}</p>
-            <p class="card-text">{{todo.description}}</p>
-            <a href="{% url 'todolist:set' todo.pk %}" class="btn btn-success">Done</a>
+                <p class="card-text text-black-50">{{todo.date}}</p>
+                <p class="card-text">{{todo.description}}</p>
+                <a href="{% url 'todolist:set' todo.pk %}" class="btn btn-success">Done</a>
+                <a href="{% url 'todolist:delete' todo.pk %}" class="btn btn-danger">Hapus</a>
             {% endif %}
-            <a href="{% url 'todolist:delete' todo.pk %}" class="btn btn-danger">Hapus</a>
-            <br>
             </div>
-          </div>
-        <div>
-        {% endfor %}
-        <br>
-            <a href="{% url 'todolist:logout' %}" class="btn btn-danger">Logout</a>
         </div>
+        <br>
+        {% endfor %} -->
+        <br>
+        <a href="{% url 'todolist:logout' %}" class="btn btn-danger">Logout</a>
     </div>
+    
 
-</body>    
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Create Task</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="add-form" onsubmit="return false;">
+                {% csrf_token %}
+                <table>
+                    {{form.as_table}}
+                    
+                </table>
+                </form>
+                
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" id="button-add" class="btn btn-success" data-bs-dismiss="modal">Submit</button> 
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+</body> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // $(document).ready(function() {
+    //     $.ajax({
+    //         url: "{% url 'todolist:show_json' %}",
+    //         type: "GET",
+    //         success: function(result) {
+    //             console.log(result);
+    //             var htmlString = ""
+    //             for (let index = 0; index < result.length; index++) {
+    //                 htmlString += `<div class="card text-bg-light">`
+    //                 if (result[index].fields.is_finished) {
+    //                     htmlString += `
+    //                         <h5 class="card-header"><del>${result[index].fields.title}</del></h5>
+    //                         <div class="card-body">
+    //                         <p class="card-text text-black-50"><del>${result[index].fields.date}</del></p>
+    //                         <p class="card-text"><del>${result[index].fields.description}</del></p>
+    //                         <a href="/todolist/set-task/${result[index].pk}" class="btn btn-success">Undone</a>
+    //                         <a href="/todolist/delete/${result[index].pk}" class="btn btn-danger">Hapus</a>
+    //                         </div>
+    //                         </div>
+    //                         <br>`
+                            
+    //                     }else {
+    //                         htmlString += `
+    //                         <h5 class="card-header">${result[index].fields.title}</h5>
+    //                         <div class="card-body">
+    //                         <p class="card-text text-black-50">${result[index].fields.date}</p>
+    //                         <p class="card-text">${result[index].fields.description}</p>
+    //                         <a href="/todolist/set-task/${result[index].pk}" class="btn btn-success">Done</a>
+    //                         <a href="/todolist/delete/${result[index].pk}" class="btn btn-danger">Hapus</a>
+    //                         </div>
+    //                         </div>
+    //                         <br>`
+    //                 }
+    //             }
+    //             $("#todolist-card").append(htmlString)
+    //             console.log(htmlString+"\n</div>")
+    //         }
+    //     })
+    // })
+    async function getTodo() {
+        return fetch("{% url 'todolist:show_json' %}").then((res) => res.json())
+    }
+
+    async function refreshTodo() {
+        document.getElementById("todolist-card").innerHTML = ""
+        const todolist = await getTodo()
+        let htmlString = ""
+        todolist.forEach((item) => {
+            htmlString += `<div class="card text-bg-light">`
+            if (item.fields.is_finished) {
+                htmlString += `
+                            <h5 class="card-header"><del>${item.fields.title}</del></h5>
+                            <div class="card-body">
+                            <p class="card-text text-black-50"><del>${item.fields.date}</del></p>
+                            <p class="card-text"><del>${item.fields.description}</del></p>
+                            <button class="btn btn-success" onclick="setTask(${item.pk})">Done</button>
+                            <button class="btn btn-danger" onclick="deleteTask(${item.pk})">Delete</button>
+                            </div>
+                            </div>
+                            <br>`
+            }else {
+                htmlString += `
+                            <h5 class="card-header">${item.fields.title}</h5>
+                            <div class="card-body">
+                            <p class="card-text text-black-50">${item.fields.date}</p>
+                            <p class="card-text">${item.fields.description}</p>
+                            <button class="btn btn-success" onclick="setTask(${item.pk})">Done</button>
+                            <button class="btn btn-danger" onclick="deleteTask(${item.pk})">Delete</button>
+                            </div>
+                            </div>
+                            <br>`
+            }
+        })
+        document.getElementById("todolist-card").innerHTML = htmlString
+    }
+
+    function setTask(id) {
+        fetch(`/todolist/set-task/${id}`, {
+            method: "GET",
+        }).then(refreshTodo)
+        return false
+    }
+
+    function deleteTask(id) {
+        fetch(`/todolist/delete/${id}`, {
+        }).then(refreshTodo)
+        return false
+    }
+
+    function addTask() {
+        fetch(`/todolist/add/`, {
+            method: "POST",
+            body: new FormData(document.querySelector('#add-form'))
+        }).then(refreshTodo)
+        document.getElementById("add-form").reset()
+        return false
+    }
+    document.getElementById("button-add").onclick = addTask
+    refreshTodo()
+</script>
 
 
 {% endblock content %}

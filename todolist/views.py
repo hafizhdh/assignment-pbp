@@ -5,10 +5,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from todolist.forms import TaskForm
 from todolist.models import Task
+from django.core import serializers
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
@@ -20,6 +21,7 @@ def show_todolist(request):
         'nama': 'Muhammad Hafizha Dhiyaulhaq',
         'npm' : '2106750723',
         'todolist': todolist,
+        'form': TaskForm()
     }
     return render(request, "todolist.html", context)
 
@@ -88,3 +90,27 @@ def delete(request, pk):
     todolist.delete()
     return redirect('todolist:show_todolist')
 
+def show_json(request):
+    user = request.user
+    if user.is_authenticated:
+        todolist = Task.objects.filter(user=request.user)
+        return HttpResponse(serializers.serialize("json", todolist), content_type="application/json")
+    # Jika belum login return data kosong
+    return HttpResponse(serializers.serialize("json", {}), content_type="application/json")
+        
+def add_task(request):
+    form = TaskForm()
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            title = request.POST["title"]
+            description = request.POST["description"]
+            user = request.user
+            todo = Task(
+                title=title,
+                description=description,
+                user=user,
+                date=datetime.now())
+            todo.save()
+        return HttpResponse(b"CREATED", status=201)
+    return HttpResponseNotFound()
